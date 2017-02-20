@@ -25,7 +25,7 @@ app.use(express.static('public'))
 app.use(cookieParser(process.env.SESSION_SECRET))
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  cookie: { maxAge: 60000 },
+  cookie: { maxAge: 360000 },
   resave: false,
   saveUninitialized: true,
   store: new MongoStore({
@@ -53,6 +53,9 @@ app.use(function (req, res, next) {
   next()
 })
 
+const issueRouter = require('./routes/issue_router')
+app.use('/', issueRouter)
+
 // Development error + Port listener handler
 if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
@@ -63,7 +66,7 @@ if (app.get('env') === 'development') {
     })
   })
 }
-const port = 4000
+const port = 5000
 app.listen(port, function () {
-  console.log('Animal Shelter App is running on ' + port)
+  console.log('CityFix App is running on ' + port)
 })
