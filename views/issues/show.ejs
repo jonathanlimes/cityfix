@@ -1,2 +1,20 @@
-<h2>Issue: <%= issue.title%></h2>
-<p>Hi the title is: <%= issue.title %> and here is the problem: <%= issue.problem %></p>
+<div class="panel panel-default">
+  <div class="panel panel-heading">
+    <h1>Issue: <%= issue.title%></h1>
+  </div>
+  <div class="panel panel-body">
+    <p><i>(created <%= issue.dateCreated %>)</i></p>
+    <h3><i>"<%= issue.problem %>"</i></h3>
+    <% if( issue.isFixed === false) {%>
+      <h4>Status: Pending Action</h4>
+    <% } else { %>
+      <h4>Status: Completed</h4>
+    <% }%>
+    <a class="btn btn-primary" href="/issues">Back</a>
+    <form method="POST" action="/issues/<%= issue.id%>?_method=DELETE"><br>
+      <button class="btn btn-danger" type="submit">
+        Delete
+      </button>
+    </form>
+  </div>
+</div>

@@ -22,10 +22,10 @@ let issueController = {
       })
     })
   },
-  create: (req, res) => {
+  create: function (req, res) {
     Issue.create(req.body.issues, function (err, output) {
       if (err) {
-        if (err.name === 'ValidationError') {
+        if (err.title === 'ValidationError') {
           let errorMessages = []
           for (field in err.errors) {
             errorMessages.push(err.errors[field].message)
@@ -40,7 +40,7 @@ let issueController = {
       }
       req.flash('flash', {
         type: 'success',
-        message: 'New issue successfully created: ' + output.name
+        message: 'New issue request successfully created: ' + output.title
       })
       res.redirect('/issues')
     })
