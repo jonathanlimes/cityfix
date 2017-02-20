@@ -11,7 +11,9 @@ router.get('/issues/:id', issueController.show)
 
 router.post('/issues/', issueController.create)
 
-router.put('/issues/:id', issueController.update)
+router.get('/issues/:id/edit', issueController.findForUpdate)
+
+router.put('/issues/:id/edit', issueController.update)
 
 router.delete('/issues/:id', issueController.remove)
 

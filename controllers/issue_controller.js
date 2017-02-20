@@ -11,7 +11,7 @@ let issueController = {
     })
   },
   new: (req, res) => {
-    res.render('new')
+    res.render('issues/new')
   },
   show: (req, res) => {
     if (req.query.status) return next('route')
@@ -34,7 +34,7 @@ let issueController = {
             type: 'danger',
             message: errorMessages
           })
-          res.redirect('/issues')
+          res.redirect('issues')
         }
         return next(err)
       }
@@ -42,28 +42,39 @@ let issueController = {
         type: 'success',
         message: 'New issue request successfully created: ' + output.title
       })
-      res.redirect('/issues')
+      res.redirect('issues')
+    })
+  },
+  findForUpdate: (req, res) => {
+    Issue.findById(req.params.id, function (err, issueToEdit) {
+      if (err) return next(err)
+      console.log(issueToEdit)
+      res.render('issues/edit', {
+        issueToEdit: issueToEdit
+      })
     })
   },
   update: (req, res) => {
-    Issue.findByIdAndUpdate(req.params.id, {
-      status: req.query.status
-    }, function (err, output) {
+    var editedIssue = req.body.issues
+    Issue.findByIdAndUpdate(req.params.id, editedIssue, function (err, output) {
       if (err) return next(err)
+      req.flash('flash', {
+        type: 'success',
+        message: 'Issue request successfully edited'
+      })
       res.redirect('/issues')
     })
   },
   remove: (req, res) => {
     Issue.findByIdAndRemove(req.params.id, function (err, output) {
-      if (err) return next(err)
+      if (err) console.error(err)
       req.flash('flash', {
         type: 'warning',
         message: 'Deleted an issue'
       })
-      res.redirect('/issues')
+      res.redirect('issues')
     })
   }
-
 }
 
 module.exports = issueController

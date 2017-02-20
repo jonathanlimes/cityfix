@@ -1,63 +1,70 @@
+<% include ../partials/flash %>
+
 <h1>Welcome, (name)!</h1>
 
-<%# PART 1: THE FORM %>
-<form method="post" action="/issues">
-  <h2>What request do you have today?</h2>
-  <div class="row">
-    <div class="form-group col-md-6">
-      <input type="text" class="form-control" name="issues[title]" id="title" placeholder="Title">
-    </div>
-    <div class="form-group col-md-6">
-      <input type="text" class="form-control" name="issues[address]" id="address" placeholder="Address (Block and Street)">
-    </div>
-    <div class="form-group col-md-12">
-      <input type="text" class="form-control" name="issues[problem]" id="problem" placeholder="Describe your problem">
-    </div>
-    <div class="form-group col-md-12">
-      <button type="submit" class="btn btn-success btn-block">Add issue</button>
-    </div>
-  </div>
-</form>
+<a href="/issues/new" class="btn btn-primary">Submit new issue request</a>
 
-<h2>My previous requests</h2>
+<h2>Requests pending action</h2>
 <div class="row">
   <% issues.forEach(function(issue) { %>
-    <div class="col-md-3">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            <%= issue.title %>
-            <small>(created <%= issue.dateCreated%>)</small>
-          </h3>
-        </div>
-        <div class="panel-body">
-          <h5>at <%= issue.address %></h5>
-          <h5><i>"<%= issue.problem %>"</i></h5>
-          <% if( issue.isFixed === false) {%>
-            <h5>Status: Pending Action</h5>
-          <% } else { %>
-            <h5>Status: Completed</h5>
-          <% }%>
-          <br>
-          <a href="/issues/<%=issue.id%>" class="btn btn-primary">
-            View
-          </a>
-          <br><br>
-          <form
-            method="POST"
-            action="/issues/<%= issue.id%>?_method=DELETE"
-          >
-            <button class="btn btn-danger" type="submit">
-              Delete
-            </button>
-          </form>
+    <% if( issue.isFixed === false) { %>
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <%= issue.title %>
+              <small>(created <%= issue.dateCreated%>)</small>
+            </h3>
+          </div>
+          <div class="panel-body">
+            <h5>at <%= issue.address %></h5>
+            <h5><i>"<%= issue.problem %>"</i></h5>
+            <a href="/issues/<%=issue.id%>" class="btn btn-primary">
+              View
+            </a>
+            <form method="POST" action="/issues/<%= issue.id%>?_method=DELETE">
+              <button class="btn btn-danger" type="submit">
+                Delete
+              </button>
+            </form>
+            <form action="/issues/<%= issue.id%>/edit">
+              <button class="btn btn-warning" type="submit">
+                Edit
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-      <pre><%= issue %></pre>
-    </div>
+    <% } %>
   <% }) %>
 </div>
 
-<p>(Num) Open requests</p>
-
-<button type="submit" class="btn btn-primary" name="button">Submit new request</button>
+<h2>Completed requests</h2>
+<div class="row">
+  <% issues.forEach(function(issue) { %>
+    <% if( issue.isFixed === true) { %>
+      <div class="col-md-3">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <%= issue.title %>
+              <small>(created <%= issue.dateCreated%>)</small>
+            </h3>
+          </div>
+          <div class="panel-body">
+            <h5>at <%= issue.address %></h5>
+            <h5><i>"<%= issue.problem %>"</i></h5>
+            <a href="/issues/<%=issue.id%>" class="btn btn-primary">
+              View
+            </a>
+            <form method="POST" action="/issues/<%= issue.id%>?_method=DELETE">
+              <button class="btn btn-danger" type="submit">
+                Delete
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  <% }) %>
+</div>

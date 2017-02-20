@@ -11,9 +11,14 @@
       <h4>Status: Completed</h4>
     <% }%>
     <a class="btn btn-primary" href="/issues">Back</a>
-    <form method="POST" action="/issues/<%= issue.id%>?_method=DELETE"><br>
+    <form method="POST" action="/issues/<%= issue.id%>?_method=DELETE">
       <button class="btn btn-danger" type="submit">
         Delete
+      </button>
+    </form>
+    <form action="/issues/<%= issue.id%>/edit">
+      <button class="btn btn-warning" type="submit">
+        Edit
       </button>
     </form>
   </div>
