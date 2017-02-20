@@ -1,25 +1,18 @@
-<h1>Issue Homepage</h1>
-
-<% include ../partials/flash %>
+<% console.log('index.ejs appears')%>
+<h1>[index.ejs] Welcome, (name)!</h1>
 
 <%# FIRST PART: THE FORM %>
 <form method="post" action="/issues">
-  <h2>Add An Issue</h2>
+  <h2>Add issue</h2>
   <div class="row">
     <div class="form-group col-md-4">
-      <input type="text" class="form-control" name="animals[breed]" id="breed" placeholder="Breed">
+      <input type="text" class="form-control" name="issues[title]" id="title" placeholder="Title">
     </div>
     <div class="form-group col-md-4">
-      <input type="text" class="form-control" name="animals[family]" id="family" placeholder="Family">
+      <input type="text" class="form-control" name="issues[address]" id="address" placeholder="Address (Block and Street)">
     </div>
     <div class="form-group col-md-4">
-      <input type="text" class="form-control" name="animals[name]" id="name" placeholder="Name">
-    </div>
-    <div class="form-group col-md-4">
-      <input type="text" class="form-control" name="animals[gender]" id="gender" placeholder="Gender (M/F)">
-    </div>
-    <div class="form-group col-md-4">
-      <input type="date" class="form-control" name="animals[dob]" id="dob">
+      <input type="text" class="form-control" name="issues[problem]" id="problem" placeholder="Describe your problem">
     </div>
     <div class="form-group col-md-4">
       <button type="submit" class="btn btn-success btn-block">Add issue</button>
@@ -27,49 +20,10 @@
   </div>
 </form>
 
-<%# SECOND PART: LISTING ANIMALS %>
-<div class="row">
-  <h2>All Animals</h2>
-  <% issues.forEach(function(issue) { %>
-    <div class="col-md-4">
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            <%= issue.title %>
-            <small>(Status: <%= issue.status %>)</small>
-          </h3>
-        </div>
-        <div class="panel-body">
-          Problem: <%= issue.problem %>
-          <br><br>
-          <% if( issue.status === 'opened') {%>
-            <a
-              class="btn btn-success"
-              href="/issues/<%=issue.id%>?status=closed">
-              Close
-            </a>
-          <% } else { %>
-            <a
-              class="btn btn-danger"
-              href="/issues/<%=issue.id%>?status=opened">
-              Open
-            </a>
-          <% }%>
-          <a href="/issues/<%=issue.id%>" class="btn btn-primary">
-            View Issue
-          </a>
-          <br><br>
-          <form
-            method="POST"
-            action="/issues/<%= issue.id %>?_method=DELETE"
-          >
-            <button class="btn btn-danger" type="submit">
-              Delete Issue
-            </button>
-          </form>
-        </div>
-      </div>
-      <pre><%= issue %></pre>
-    </div>
-  <% }) %>
-</div>
+
+<h2>My previous requests</h2>
+
+<p>(Put previous requests here)</p>
+<p>(Num) Open requests</p>
+
+<button type="submit" class="btn btn-primary" name="button">Submit new request</button>

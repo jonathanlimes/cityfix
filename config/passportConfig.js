@@ -66,13 +66,12 @@ module.exports = function (passport) {
         let newUser = new User({
           local: {
             email: email,
-            password: User.encrypt(password) // hashed password
+            password: User.encrypt(password)
           }
         })
 
         newUser.save(function (err, output) {
           if (err) return next(err)
-
           return next(null, output, req.flash('flash', {
             type: 'success',
             message: 'Hello new user, ' + output.local.email + '!'

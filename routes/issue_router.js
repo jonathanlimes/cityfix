@@ -1,19 +1,18 @@
 const express = require('express')
 const router = express.Router()
+const isNotLoggedIn = require('../middleware/isNotLoggedIn')
 const issueController = require('../controllers/issue_controller')
 
-router.get('/', issueController.list)
+router.get('/issues/', issueController.list)
 
-router.get('/new', issueController.new)
+router.get('/issues/new', issueController.new)
 
-router.get('/:id', issueController.show)
+router.get('/issues/:id', issueController.show)
 
-router.get('/:id/edit', issueController.edit)
+router.post('/issues/', issueController.create)
 
-router.post('/', issueController.create)
+router.put('/issues/:id', issueController.update)
 
-router.put('/:id', issueController.update)
-
-router.delete('/:id', issueController.delete)
+router.delete('/issues/:id', issueController.remove)
 
 module.exports = router

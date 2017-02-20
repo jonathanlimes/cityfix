@@ -5,14 +5,8 @@ const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
 
 const userSchema = new mongoose.Schema({
   local: {
-    firstName: {
-      type: String,
-      required: [true, 'First name is not found.']
-    },
-    lastName: {
-      type: String,
-      required: [true, 'Last name is not found.']
-    },
+    firstName: String,
+    lastName: String,
     email: {
       type: String,
       required: [true, 'Email address not found.'],
@@ -22,16 +16,16 @@ const userSchema = new mongoose.Schema({
     },
     password: {
       type: String,
-      required: [true, 'Password not found.'],
-      minlength: [5, 'Password must be between 5 and 16 characters'],
-      maxlength: [16, 'Password must be between 5 and 16 characters']
+      required: [true, 'Password not found.']
     },
-    userType: {
-      type: String,
-      enum: ['user', 'admin'],
-      default: 'user'
-    },
-    adminKey: String
+    issue_id: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Issue'
+    }],
+    isAdmin: {
+      type: Boolean,
+      default: false
+    }
   }
 })
 

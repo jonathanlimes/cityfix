@@ -1,70 +1,66 @@
-// all the logic goes here
 let Issue = require('../models/issue')
 
 let issueController = {
+
   list: (req, res) => {
-    Issue.find({}, (err, output) => {
-      // res.send('test')
-      if (err) return next(err)
-      res.render('home', {
-        requests: output,
+    Issue.find({}, function (err, output) {
+      res.render('issues/index', {
+        issues: output,
         flash: req.flash('flash')[0]
       })
     })
   },
-
+  new: (req, res) => {
+    res.render('new')
+  },
   show: (req, res) => {
-    Issue.findById(req.params.id, (err, output) => {
+    if (req.query.status) return next('route')
+    Issue.findById(req.params.id, function (err, output) {
       if (err) return next(err)
       res.render('issues/show', {
         issue: output
       })
     })
   },
-
-  new: (req, res) => {
-    res.render('new')
-  },
-
   create: (req, res) => {
-    let newRequest = new Issue({
-      title: req.body.title,
-      nearestBlockNum: req.body.nearestBlockNum,
-      street: req.body.street,
-      problem: req.body.problem,
-      status: req.body.status,
-      solution: req.body.solution
-    })
-    newTodo.save(function (err, savedEntry) {
-      if (err) throw err
-      res.redirect('/new')
+    Issue.create(req.body.issues, function (err, output) {
+      if (err) {
+        if (err.name === 'ValidationError') {
+          let errorMessages = []
+          for (field in err.errors) {
+            errorMessages.push(err.errors[field].message)
+          }
+          req.flash('flash', {
+            type: 'danger',
+            message: errorMessages
+          })
+          res.redirect('/issues')
+        }
+        return next(err)
+      }
+      req.flash('flash', {
+        type: 'success',
+        message: 'New issue successfully created: ' + output.name
+      })
+      res.redirect('/issues')
     })
   },
-
-  edit: (req, res) => {
-    Issue.findById(req.params.id, (err, output) => {
-      if (err) throw err
-      res.render('todo/edit', { todoItem: output })
-    })
-  },
-
   update: (req, res) => {
-    Issue.findOneAndUpdate({
-      _id: req.params.id
-    }, {
-      title: req.body.title,
-      description: req.body.description,
-      completed: req.body.completed
-    }, (err, todoItem) => {
-      if (err) throw err
-      res.redirect('/todo/' + todoItem.id)
+    Issue.findByIdAndUpdate(req.params.id, {
+      status: req.query.status
+    }, function (err, output) {
+      if (err) return next(err)
+      res.redirect('/issues')
     })
   },
-
-  delete: (req, res) => {
-    Issue.findByIdAndRemove(req.params.id, (err, output) => {
-      if (err) throw err
-      res.redirect('/todo')
+  remove: (req, res) => {
+    Issue.findByIdAndRemove(req.params.id, function (err, output) {
+      if (err) return next(err)
+      req.flash('flash', {
+        type: 'warning',
+        message: 'Deleted an issue'
+      })
+      res.redirect('/issues')
     })
   }
 
