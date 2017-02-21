@@ -17,7 +17,7 @@ var flash = require('connect-flash')
 var cookieParser = require('cookie-parser')
 var MongoStore = require('connect-mongo')(session)
 
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect("mongodb://jonathanlimes:project2@ds157509.mlab.com:57509/cityfix")
 mongoose.Promise = global.Promise
 
 app.use(express.static('public'))
