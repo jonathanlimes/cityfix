@@ -1,12 +1,21 @@
-const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 
 const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
 
 const userSchema = new mongoose.Schema({
   local: {
-    firstName: String,
-    lastName: String,
+
+    firstName: {
+      type: String,
+      //required: [true, 'First name not found.']
+    },
+
+    lastName: {
+      type: String,
+      //required: [true, 'Last name not found.']
+    },
+
     email: {
       type: String,
       required: [true, 'Email address not found.'],
@@ -14,18 +23,22 @@ const userSchema = new mongoose.Schema({
       lowercase: true,
       match: emailRegex
     },
+
     password: {
       type: String,
       required: [true, 'Password not found.']
     },
+
     issue_id: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Issue'
     }],
+
     isAdmin: {
       type: Boolean,
       default: false
     }
+
   }
 })
 

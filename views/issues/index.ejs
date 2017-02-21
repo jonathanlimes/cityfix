@@ -1,6 +1,8 @@
 <% include ../partials/flash %>
 
-<h1>Welcome, (name)!</h1>
+<pre><%=user%></pre>
+
+<h1>Welcome, <%=user.local.firstName%>!</h1>
 
 <a href="/issues/new" class="btn btn-primary">Submit new issue request</a>
 

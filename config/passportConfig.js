@@ -1,5 +1,4 @@
 var LocalStrategy = require('passport-local').Strategy
-var FacebookStrategy = require('passport-facebook').Strategy
 
 const User = require('../models/user')
 
@@ -16,6 +15,43 @@ module.exports = function (passport) {
     })
   })
 
+  passport.use('local-signup', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true
+  }, function (req, email, password, next) {
+    // find user with email as given from the callback
+    User.findOne({ 'local.email': email }, function (err, foundUser) {
+      if (err) return next(err)
+      if (foundUser) {
+        console.log('Same user with same email found')
+        return next(null, false, req.flash('flash', {
+          type: 'danger',
+          message: 'This email is already used. Try another email.'
+        }))
+      } else {
+        let newUser = new User({
+          local: {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: email,
+            password: User.encrypt(password),
+          }
+        })
+
+        console.log(newUser)
+
+        newUser.save(function (err, output) {
+          if (err) console.error(err)
+          return next(null, output, req.flash('flash', {
+            type: 'success',
+            message: 'Hello new user, ' + output.local.email + '!'
+          }))
+        })
+      }
+    })
+  }))
+
   passport.use('local-login', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
@@ -27,7 +63,7 @@ module.exports = function (passport) {
       if (!foundUser) {
         return next(err, false, req.flash('flash', {
           type: 'danger',
-          message: 'No such user found by this email'
+          message: 'No such user found by this email.'
         }))
       }
       // if can find by email, check if password is right
@@ -35,49 +71,11 @@ module.exports = function (passport) {
       if (!foundUser.validPassword(givenPassword)) {
         return next(null, false, req.flash('flash', {
           type: 'danger',
-          message: 'Access denied'
+          message: 'Invalid password.'
         }))
       }
       // if pw is right, then return next with the foundUser
       return next(err, foundUser)
-    })
-  }))
-
-  passport.use('local-signup', new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password',
-    passReqToCallback: true
-  }, function (req, email, password, next) {
-    // find user with email as given from the callback
-    User.findOne({ 'local.email': email }, function (err, foundUser) {
-        // inside the callback, if there is a user with the email,
-        // call next() middleware with error arguments + update the flash data
-      if (err) return next(err)
-      if (foundUser) {
-        console.log('Same user with same email found')
-        return next(null, false, req.flash('flash', {
-          type: 'danger',
-          message: 'This email is already used'
-        }))
-        // if not found, save a damn new User
-        // save user to the DB as per normal
-        // call next() middleware without error args
-      } else {
-        let newUser = new User({
-          local: {
-            email: email,
-            password: User.encrypt(password)
-          }
-        })
-
-        newUser.save(function (err, output) {
-          if (err) return next(err)
-          return next(null, output, req.flash('flash', {
-            type: 'success',
-            message: 'Hello new user, ' + output.local.email + '!'
-          }))
-        })
-      }
     })
   }))
 

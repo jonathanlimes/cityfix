@@ -2,7 +2,7 @@ let Issue = require('../models/issue')
 
 let issueController = {
 
-  list: (req, res) => {
+  list: function (req, res) {
     Issue.find({}, function (err, output) {
       res.render('issues/index', {
         issues: output,
@@ -10,10 +10,10 @@ let issueController = {
       })
     })
   },
-  new: (req, res) => {
+  new: function (req, res) {
     res.render('issues/new')
   },
-  show: (req, res) => {
+  show: function (req, res) {
     if (req.query.status) return next('route')
     Issue.findById(req.params.id, function (err, output) {
       if (err) return next(err)
@@ -45,7 +45,7 @@ let issueController = {
       res.redirect('issues')
     })
   },
-  findForUpdate: (req, res) => {
+  findForUpdate: function (req, res) {
     Issue.findById(req.params.id, function (err, issueToEdit) {
       if (err) return next(err)
       console.log(issueToEdit)
@@ -54,7 +54,7 @@ let issueController = {
       })
     })
   },
-  update: (req, res) => {
+  update: function (req, res) {
     var editedIssue = req.body.issues
     Issue.findByIdAndUpdate(req.params.id, editedIssue, function (err, output) {
       if (err) return next(err)
@@ -65,7 +65,7 @@ let issueController = {
       res.redirect('/issues')
     })
   },
-  remove: (req, res) => {
+  remove: function (req, res) {
     Issue.findByIdAndRemove(req.params.id, function (err, output) {
       if (err) console.error(err)
       req.flash('flash', {

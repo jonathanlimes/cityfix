@@ -58,14 +58,17 @@ app.use(function (req, res, next) {
 // app.use('/', authRouter)
 
 const issueRouter = require('./routes/issue_router')
-app.use('/', issueRouter)
+app.use('/issues', issueRouter)
 
-// render default homepage
+const userRouter = require('./routes/user_router')
+app.use('/', userRouter)
+
+// Render default homepage
 app.get('/', function (req, res) {
   res.render('home')
 })
 
-// Development error + Port listener handler
+// Development Error Handler
 if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
     res.status(err.status || 500)
@@ -75,6 +78,8 @@ if (app.get('env') === 'development') {
     })
   })
 }
+
+// Launch / Port Listener
 const port = 5000
 app.listen(port, function () {
   console.log('CityFix App is running on localhost://' + port)
