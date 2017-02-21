@@ -81,7 +81,7 @@ if (app.get('env') === 'development') {
 }
 
 // Launch / Port Listener
-const port = 5000
+const port = process.env.PORT || 5000
 app.listen(port, function () {
   console.log('CityFix App is running on localhost://' + port)
 })
