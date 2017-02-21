@@ -30,7 +30,8 @@ app.use(session({
   saveUninitialized: true,
   store: new MongoStore({
     url: process.env.MONGODB_URI,
-    autoReconnect: true
+    autoReconnect: true,
+    mongooseConnection: mongoose.connection
   })
 }))
 
