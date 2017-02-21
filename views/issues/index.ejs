@@ -4,34 +4,34 @@
 
 <h1>Welcome, <%=user.local.firstName%>!</h1>
 
-<a href="/issues/new" class="btn btn-primary">Submit new issue request</a>
+<a href="/issues/new" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Submit new issue request</a>
 
-<h2>Requests pending action</h2>
+<h2><span class="glyphicon glyphicon-time"></span> Requests pending action</h2>
 <div class="row">
   <% issues.forEach(function(issue) { %>
     <% if( issue.isFixed === false) { %>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
               <%= issue.title %>
-              <small>(created <%= issue.dateCreated%>)</small>
+              <br><small>(created <%= issue.dateCreated%>)</small>
             </h3>
           </div>
           <div class="panel-body">
             <h5>at <%= issue.address %></h5>
             <h5><i>"<%= issue.problem %>"</i></h5>
             <a href="/issues/<%=issue.id%>" class="btn btn-primary">
-              View
+              <span class="glyphicon glyphicon-eye-open"></span> View
             </a>
             <form method="POST" action="/issues/<%= issue.id%>?_method=DELETE">
               <button class="btn btn-danger" type="submit">
-                Delete
+                <span class="glyphicon glyphicon-trash"></span> Delete
               </button>
             </form>
             <form action="/issues/<%= issue.id%>/edit">
               <button class="btn btn-warning" type="submit">
-                Edit
+                <span class="glyphicon glyphicon-pencil"></span> Edit
               </button>
             </form>
           </div>
@@ -41,27 +41,27 @@
   <% }) %>
 </div>
 
-<h2>Completed requests</h2>
+<h2><span class="glyphicon glyphicon-ok-circle"></span> Completed requests</h2>
 <div class="row">
   <% issues.forEach(function(issue) { %>
     <% if( issue.isFixed === true) { %>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <div class="panel panel-success">
           <div class="panel-heading">
             <h3 class="panel-title">
               <%= issue.title %>
-              <small>(created <%= issue.dateCreated%>)</small>
+              <br><small>(created <%= issue.dateCreated%>)</small>
             </h3>
           </div>
           <div class="panel-body">
             <h5>at <%= issue.address %></h5>
             <h5><i>"<%= issue.problem %>"</i></h5>
             <a href="/issues/<%=issue.id%>" class="btn btn-primary">
-              View
+              <span class="glyphicon glyphicon-eye-open"></span> View
             </a>
             <form method="POST" action="/issues/<%= issue.id%>?_method=DELETE">
               <button class="btn btn-danger" type="submit">
-                Delete
+                 <span class="glyphicon glyphicon-trash"></span> Delete
               </button>
             </form>
           </div>

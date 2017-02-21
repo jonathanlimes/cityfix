@@ -10,15 +10,16 @@
     <% } else { %>
       <h4>Status: Completed</h4>
     <% }%>
-    <a class="btn btn-primary" href="/issues">Back</a>
+    <a class="btn btn-primary" href="/issues">
+      <span class="glyphicon glyphicon-triangle-left"></span> Back</a>
     <form method="POST" action="/issues/<%= issue.id%>?_method=DELETE">
       <button class="btn btn-danger" type="submit">
-        Delete
+        <span class="glyphicon glyphicon-trash"></span> Delete
       </button>
     </form>
     <form action="/issues/<%= issue.id%>/edit">
       <button class="btn btn-warning" type="submit">
-        Edit
+        <span class="glyphicon glyphicon-pencil"></span> Edit
       </button>
     </form>
   </div>

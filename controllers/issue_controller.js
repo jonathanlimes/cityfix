@@ -14,7 +14,6 @@ let issueController = {
     res.render('issues/new')
   },
   show: function (req, res) {
-    if (req.query.status) return next('route')
     Issue.findById(req.params.id, function (err, output) {
       if (err) return next(err)
       res.render('issues/show', {

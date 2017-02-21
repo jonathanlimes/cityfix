@@ -27,7 +27,7 @@ let userController = {
     var loginStrategy = passport.authenticate('local-login', {
       successRedirect: '/issues',
       failureRedirect: '/login',
-      failureFlash: false,
+      failureFlash: false
     })
     return loginStrategy(req, res)
   },
@@ -39,6 +39,15 @@ let userController = {
       message: 'You have logged out. See you again!'
     })
     res.redirect('/login')
+  },
+
+  show: function (req, res) {
+    User.findById(req.params.id, function (err, output) {
+      if (err) return next(err)
+      res.render('users/show', {
+        userProfile: output
+      })
+    })
   }
 
 }

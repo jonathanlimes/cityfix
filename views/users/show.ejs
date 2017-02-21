@@ -1,0 +1,18 @@
+<h1><%=user.local.firstName%> <%=user.local.lastName%></h1>
+<h4><span class="glyphicon glyphicon-envelope"></span> <i><%=user.local.email%></i></h4>
+<img src="http://placehold.it/250x250" alt="placeholder-profile-pic">
+
+<% if (user.local.isAdmin === false) { %>
+  <h3>Status: Resident</h3>
+  <h4>Total Issues Opened: </h4>
+<%} else {%>
+  <h3>Status: City Admin</h3>
+  <h4>Total Issues On Hand: </h4>
+  <h4>Total Issues Fixed: </h4>
+  <h4>Completion Ratio: </h4>
+<% } %>
+
+<%# You might want to use db.collection.count() %>
+
+<a class="btn btn-primary" href="/issues">
+<span class="glyphicon glyphicon-triangle-left"></span> Back</a>
