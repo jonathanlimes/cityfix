@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const isLoggedIn = require('../middleware/isLoggedIn')
 const userController = require('../controllers/user_controller')
 
 router.get('/signup', userController.signup)
