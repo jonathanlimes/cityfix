@@ -22,14 +22,14 @@ mongoose.Promise = global.Promise
 
 app.use(express.static('public'))
 
-app.use(cookieParser(process.env.SESSION_SECRET))
+app.use(cookieParser('sososecret'))
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: 'sososecret',
   cookie: { maxAge: 360000 },
   resave: false,
   saveUninitialized: true,
   store: new MongoStore({
-    url: process.env.MONGODB_URI,
+    url: 'mongodb://jonathanlimes:project2@ds157509.mlab.com:57509/cityfix',
     autoReconnect: true,
     mongooseConnection: mongoose.connection
   })
