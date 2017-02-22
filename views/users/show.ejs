@@ -1,10 +1,13 @@
+<% var spellMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']%>
+
 <h1><%=user.local.firstName%> <%=user.local.lastName%></h1>
 <h4><span class="glyphicon glyphicon-envelope"></span> <i><%=user.local.email%></i></h4>
 <img src="http://placehold.it/250x250" alt="placeholder-profile-pic">
+<h4>Member since <%=user.local.dateJoined.getDate()%> <%=spellMonth[user.local.dateJoined.getMonth()+1]%> <%=user.local.dateJoined.getFullYear()%></h4>
 
 <% if (user.local.isAdmin === false) { %>
   <h3>Status: Resident</h3>
-  <h4>Total Issues Opened: </h4>
+  <h4>Total Issues Opened: <%=user.local.issue_id.length%></h4>
 <%} else {%>
   <h3>Status: City Admin</h3>
   <h4>Total Issues On Hand: </h4>

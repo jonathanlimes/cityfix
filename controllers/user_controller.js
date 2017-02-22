@@ -8,13 +8,13 @@ let userController = {
     })
   },
 
-  authSignup: function (req, res) {
+  authSignup: function (req, res, next) {
     var signupStrategy = passport.authenticate('local-signup', {
       successRedirect: '/issues',
       failureRedirect: '/signup',
       failureFlash: false
     })
-    return signupStrategy(req, res)
+    return signupStrategy(req, res, next)
   },
 
   login: function (req, res) {
@@ -23,13 +23,13 @@ let userController = {
     })
   },
 
-  authLogin: function (req, res) {
+  authLogin: function (req, res, next) {
     var loginStrategy = passport.authenticate('local-login', {
       successRedirect: '/issues',
       failureRedirect: '/login',
       failureFlash: false
     })
-    return loginStrategy(req, res)
+    return loginStrategy(req, res, next)
   },
 
   logout: function (req, res) {

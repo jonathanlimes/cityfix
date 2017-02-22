@@ -3,7 +3,7 @@ let Issue = require('../models/issue')
 let issueController = {
 
   list: function (req, res) {
-    Issue.find({}, function (err, output) {
+    Issue.find({}).populate('user_id').exec(function (err, output) {
       res.render('issues/index', {
         issues: output,
         flash: req.flash('flash')[0]
@@ -13,8 +13,8 @@ let issueController = {
   new: function (req, res) {
     res.render('issues/new')
   },
-  show: function (req, res) {
-    Issue.findById(req.params.id, function (err, output) {
+  show: function (req, res, next) {
+    Issue.findById(req.params.id).populate('user_id').exec(function (err, output) {
       if (err) return next(err)
       res.render('issues/show', {
         issue: output
@@ -28,12 +28,10 @@ let issueController = {
       problem: req.body.issues.problem,
       dateCreated: req.body.issues.dateCreated,
       user_id: req.user._id,
-      user_firstName: req.user.firstName,
-      user_lastName: req.user.lastName,
       isFixed: req.body.issues.isFixed
     })
 
-    newIssue.save(function (err, output) {
+    newIssue.save(function (err, output, next) {
       if (err) {
         if (err.title === 'ValidationError') {
           let errorMessages = []
@@ -58,7 +56,7 @@ let issueController = {
       res.redirect('issues')
     })
   },
-  findForUpdate: function (req, res) {
+  findForUpdate: function (req, res, next) {
     Issue.findById(req.params.id, function (err, issueToEdit) {
       if (err) return next(err)
       console.log(issueToEdit)
@@ -67,7 +65,7 @@ let issueController = {
       })
     })
   },
-  update: function (req, res) {
+  update: function (req, res, next) {
     var editedIssue = req.body.issues
     Issue.findByIdAndUpdate(req.params.id, editedIssue, function (err, output) {
       if (err) return next(err)
@@ -78,7 +76,7 @@ let issueController = {
       res.redirect('/issues')
     })
   },
-  remove: function (req, res) {
+  remove: function (req, res, next) {
     Issue.findByIdAndRemove(req.params.id, function (err, output) {
       if (err) console.error(err)
       req.flash('flash', {
