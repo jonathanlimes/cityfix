@@ -26,10 +26,11 @@ app.use(express.static('public'))
 app.use(cookieParser('sososecret'))
 app.use(session({
   secret: 'sososecret',
-  cookie: { maxAge: 360000 },
+  cookie: { maxAge: 3600000 },
   resave: false,
   saveUninitialized: true,
   store: new MongoStore({
+    // storing in the mongostore - you don't have to keep logging in again when you npm start. it stores session in the mongoDB
     url: 'mongodb://jonathanlimes:project2@ds157509.mlab.com:57509/cityfix',
     autoReconnect: true,
     mongooseConnection: mongoose.connection
