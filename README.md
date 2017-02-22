@@ -3,7 +3,7 @@
 Heroku Link:
 [https://cityfix.herokuapp.com/](https://cityfix.herokuapp.com/)
 
-## About
+## Background
 
 CityFix is a solution to help city residents **improve their neighbourhood**. If residents witness something that needs fixing, such as a cracked pavement or a stained wall, they can post an issue request on CityFix. Public Works Officers will then receive the requests and get to work as soon as they can. Residents can view the completion status of their requests when logged into their account.
 
@@ -16,15 +16,15 @@ But really - for the purposes of learning, this is a simple web app built using 
 * Passport login and authentication
 * Dedicated Issue pages and User profile pages
 
-## Workflow
+## Process
 
-![Wireframes 1](http://i.imgur.com/4NjtrzC.jpg)
+![Wireframes 1](http://i.imgur.com/4NjtrzCl.jpg)
 
-![Wireframes 2](http://i.imgur.com/Q7Lfj8u.jpg)
+![Wireframes 2](http://i.imgur.com/Q7Lfj8ul.jpg)
 
-![Wireframes 3](http://i.imgur.com/Rw2TUu4.jpg)
+![Wireframes 3](http://i.imgur.com/Rw2TUu4l.jpg)
 
-![Workflow 1](http://i.imgur.com/pXr2SGG.jpg)
+![Workflow 1](http://i.imgur.com/pXr2SGGl.jpg)
 
 (To be explained before Presentation)
 
