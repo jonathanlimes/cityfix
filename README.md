@@ -1,66 +1,46 @@
 # CityFix
 
-[Link to Heroku App](https://cityfix.herokuapp.com/)
+Heroku Link:
+[https://cityfix.herokuapp.com/](https://cityfix.herokuapp.com/)
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specification for instructions on how to submit your projects.
+## About
 
-## Getting Started
+CityFix is a solution to help city residents **improve their neighbourhood**. If residents witness something that needs fixing, such as a cracked pavement or a stained wall, they can post an issue request on CityFix. Public Works Officers will then receive the requests and get to work as soon as they can. Residents can view the completion status of their requests when logged into their account.
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+**For public works officers:** CityFix helps public works administrators focus on actually doing their work, rather than merely managing their work. Administrators will receive an overview of the public works requests from all resident users. They can then plan their schedule accordingly to optimize their effectiveness.
 
-### Prerequisites
-
-What is needed to install and run the project, how do we install them
-
-```
-Code example
-```
-
-### How to Use
-
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
-
-
-```
-Code example
-```
-
-More steps...
-
-```
-until finished
-```
-
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
-
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
-
-## Built With
-
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+But really - for the purposes of learning, this is a simple web app built using Node.js/Express, with the following features:
+* Multiple models: Issue requests, and Users
+* Full CRUD functionality for Issue requests
+* Different capabilities and access levels for Residents vs. Admins
+* Passport login and authentication
+* Dedicated Issue pages and User profile pages
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+![Wireframes 1](http://i.imgur.com/4NjtrzC.jpg)
 
-## Authors
+![Wireframes 2](http://i.imgur.com/Q7Lfj8u.jpg)
 
-Did you collaborate with others on this project, list them here
+![Wireframes 3](http://i.imgur.com/Rw2TUu4.jpg)
 
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+![Workflow 1](http://i.imgur.com/pXr2SGG.jpg)
 
-## Acknowledgments
+(To be explained before Presentation)
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+## Development
+
+* ORM: Mongoose
+* Database: MongoDB / mLab
+* Embedded JavaScript (eJS)
+* Node.js, Express
+* Bootstrap CSS Framework
+* HTML5, JavaScript
+
+## References, Tools, and Inspiration
+
+* Bootstrap Components
+* BOS:311 App
+* Google Maps (TBC)
+* Cloudinary (TBC)
+* Instructors and Classmates at GA Singapore
