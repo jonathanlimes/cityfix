@@ -17,6 +17,10 @@ const issueSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
   isFixed: {
     type: Boolean,
     default: false

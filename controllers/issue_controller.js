@@ -22,7 +22,18 @@ let issueController = {
     })
   },
   create: function (req, res) {
-    Issue.create(req.body.issues, function (err, output) {
+    var newIssue = new Issue({
+      title: req.body.issues.title,
+      address: req.body.issues.address,
+      problem: req.body.issues.problem,
+      dateCreated: req.body.issues.dateCreated,
+      user_id: req.user._id,
+      user_firstName: req.user.firstName,
+      user_lastName: req.user.lastName,
+      isFixed: req.body.issues.isFixed
+    })
+
+    newIssue.save(function (err, output) {
       if (err) {
         if (err.title === 'ValidationError') {
           let errorMessages = []
@@ -41,6 +52,9 @@ let issueController = {
         type: 'success',
         message: 'New issue request successfully created: ' + output.title
       })
+      var userIssues = req.user.local.issue_id
+      userIssues.push(newIssue)
+      req.user.save()
       res.redirect('issues')
     })
   },
@@ -71,7 +85,11 @@ let issueController = {
         type: 'warning',
         message: 'Deleted an issue'
       })
-      res.redirect('issues')
+      var deletedIssueId = req.params.id
+      var userIssues = req.user.local.issue_id
+      userIssues.splice(userIssues.indexOf(deletedIssueId), 1)
+      req.user.save()
+      res.redirect('/issues')
     })
   }
 }
