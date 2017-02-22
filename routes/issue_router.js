@@ -11,6 +11,8 @@ router.get('/:id', isNotLoggedIn, issueController.show)
 
 router.post('/', isNotLoggedIn, issueController.create)
 
+router.get('/:id/fix', isNotLoggedIn, issueController.fix)
+
 router.get('/:id/edit', isNotLoggedIn, issueController.findForUpdate)
 
 router.put('/:id/edit', isNotLoggedIn, issueController.update)

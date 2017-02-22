@@ -1,0 +1,44 @@
+<!-- Admin Incomplete Requests -->
+<h2><span class="glyphicon glyphicon-time"></span> All Incomplete Requests (for Admins)</h2>
+
+<div class="row">
+  <% issues.forEach(function(issue) { %>
+    <% var spellMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']%>
+    <% var spellDay = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']%>
+    <% if( issue.isFixed === false) { %>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <%= issue.title %>
+              <br><small>(created <%=issue.dateCreated.getHours()%>:<%=issue.dateCreated.getMinutes()%> hrs, <%=spellDay[issue.dateCreated.getDay()]%>,  <%=issue.dateCreated.getDate()%>  <%=spellMonth[issue.dateCreated.getMonth()+1]%> <%=issue.dateCreated.getFullYear()%>)</small>
+              <br><small>by <%= issue.user_id.local.firstName %> <%= issue.user_id.local.lastName %></small>
+            </h3>
+          </div>
+          <div class="panel-body">
+            <h5>at <%= issue.address %></h5>
+            <h5><i>"<%= issue.problem %>"</i></h5>
+            <a href="/issues/<%=issue.id%>" class="btn btn-primary">
+              <span class="glyphicon glyphicon-eye-open"></span> View
+            </a>
+            <form action="/issues/<%= issue.id%>/edit">
+              <button class="btn btn-warning" type="submit">
+                <span class="glyphicon glyphicon-pencil"></span> Edit
+              </button>
+            </form>
+
+            <% if( issue.isFixed === false) {%>
+              <a
+                class="btn btn-success"
+                href="/issues/<%=issue.id%>/fix?isFixed=true">
+                <span class="glyphicon glyphicon-ok-circle"></span> Fix Issue
+              </a>
+            <% }%>
+
+          </div>
+        </div>
+        <pre><%=issue%></pre>
+      </div>
+    <% } %>
+  <% }) %>
+</div>

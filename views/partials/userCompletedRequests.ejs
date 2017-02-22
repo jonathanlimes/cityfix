@@ -1,0 +1,38 @@
+<!-- User Completed Requests -->
+<h2><span class="glyphicon glyphicon-ok-circle"></span> Your Completed Requests</h2>
+
+<div class="row">
+  <% issues.forEach(function(issue) { %>
+    <% var userIssuesArr = user.local.issue_id %>
+    <% var spellMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']%>
+    <% var spellDay = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']%>
+    <% if(userIssuesArr.indexOf(issue.id) !== -1) {%>
+
+      <% if( issue.isFixed === true) { %>
+        <div class="col-md-4">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <%= issue.title %>
+                <br><small>(created <%=issue.dateCreated.getHours()%>:<%=issue.dateCreated.getMinutes()%> hrs, <%=spellDay[issue.dateCreated.getDay()]%>,  <%=issue.dateCreated.getDate()%>  <%=spellMonth[issue.dateCreated.getMonth()+1]%> <%=issue.dateCreated.getFullYear()%>)</small>
+              </h3>
+            </div>
+            <div class="panel-body">
+              <h5>at <%= issue.address %></h5>
+              <h5><i>"<%= issue.problem %>"</i></h5>
+              <a href="/issues/<%=issue.id%>" class="btn btn-primary">
+                <span class="glyphicon glyphicon-eye-open"></span> View
+              </a>
+              <form method="POST" action="/issues/<%= issue.id%>?_method=DELETE">
+                <button class="btn btn-danger" type="submit">
+                   <span class="glyphicon glyphicon-trash"></span> Delete
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    <% } %>
+  <% }) %>
+
+</div>

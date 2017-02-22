@@ -59,7 +59,6 @@ let issueController = {
   findForUpdate: function (req, res, next) {
     Issue.findById(req.params.id, function (err, issueToEdit) {
       if (err) return next(err)
-      console.log(issueToEdit)
       res.render('issues/edit', {
         issueToEdit: issueToEdit
       })
@@ -76,9 +75,17 @@ let issueController = {
       res.redirect('/issues')
     })
   },
+  fix: function (req, res, next) {
+    Issue.findByIdAndUpdate(req.params.id, {
+      isFixed: req.query.isFixed
+    }, function (err, output) {
+      if (err) return next(err)
+      res.redirect('/issues')
+    })
+  },
   remove: function (req, res, next) {
     Issue.findByIdAndRemove(req.params.id, function (err, output) {
-      if (err) console.error(err)
+      if (err) return next(err)
       req.flash('flash', {
         type: 'warning',
         message: 'Deleted an issue'
@@ -90,6 +97,7 @@ let issueController = {
       res.redirect('/issues')
     })
   }
+
 }
 
 module.exports = issueController
