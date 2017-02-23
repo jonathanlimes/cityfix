@@ -3,7 +3,7 @@
 <div class="container">
   <% var spellMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']%>
 
-  <h1><%=user.local.firstName%> <%=user.local.lastName%></h1>
+  <h1 class="heading"><%=user.local.firstName%> <%=user.local.lastName%></h1>
   <h4><span class="glyphicon glyphicon-envelope"></span> <i><%=user.local.email%></i></h4>
   <img src="http://placehold.it/250x250" alt="placeholder-profile-pic">
   <h4>Member since <%=user.local.dateJoined.getDate()%> <%=spellMonth[user.local.dateJoined.getMonth()+1]%> <%=user.local.dateJoined.getFullYear()%></h4>

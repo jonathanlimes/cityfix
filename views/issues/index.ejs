@@ -3,11 +3,9 @@
 <div class="container">
   <% include ../partials/flash %>
 
-  <!-- <pre><%=user%></pre> -->
-
   <% if (user.local.isAdmin === false) { %>
 
-    <h1>Welcome, <%=user.local.firstName%>!</h1>
+    <h1 class="heading">Welcome, <%=user.local.firstName%>!</h1>
 
     <a href="/issues/new" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> Submit new issue request</a>
 
@@ -16,7 +14,7 @@
 
   <%} else {%>
 
-    <h1>Hi, City Admin <%=user.local.firstName%>! Time to work.</h1>
+    <h1 class="heading">Hi, City Admin <%=user.local.firstName%>! Time to work.</h1>
 
     <% include ../partials/adminPendingRequests %>
     <% include ../partials/adminCompletedRequests %>

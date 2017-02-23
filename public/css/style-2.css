@@ -1,3 +1,13 @@
 form {
   display: inline;
 }
+
+.heading {
+  font-weight: bold;
+}
+
+.sub-heading {
+  font-weight: bold;
+  font-style: italic;
+  text-transform: uppercase;
+}

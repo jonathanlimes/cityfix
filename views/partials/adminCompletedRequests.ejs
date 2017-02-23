@@ -1,5 +1,5 @@
 <!-- Admin Completed Requests -->
-<h2><span class="glyphicon glyphicon-ok-circle"></span> Requests you have completed</h2>
+<h2 class="sub-heading"><span class="glyphicon glyphicon-ok-circle"></span> Requests you have completed</h2>
 
 <div class="row">
   <% issues.forEach(function(issue) { %>
@@ -9,7 +9,7 @@
       <div class="col-md-4">
         <div class="panel panel-success">
           <div class="panel-heading">
-            <h3 class="panel-title">
+            <h3 class="panel-title heading">
               <%= issue.title %>
               <br><small>(created <%=issue.dateCreated.getHours()%>:<%=issue.dateCreated.getMinutes()%> hrs, <%=spellDay[issue.dateCreated.getDay()]%>,  <%=issue.dateCreated.getDate()%>  <%=spellMonth[issue.dateCreated.getMonth()+1]%> <%=issue.dateCreated.getFullYear()%>)</small>
               <br><small>by <%= issue.user_id.local.firstName %> <%= issue.user_id.local.lastName %></small>
