@@ -28,11 +28,6 @@
                 href="/issues/<%=issue.id%>/fix?isFixed=false">
                 <span class="glyphicon glyphicon-wrench"></span> Re-open Issue
               </a>
-              <form method="POST" action="/issues/<%= issue.id%>?_method=DELETE">
-                <button class="btn btn-danger" type="submit">
-                   <span class="glyphicon glyphicon-trash"></span> Delete
-                </button>
-              </form>
             <% }%>
 
           </div>
