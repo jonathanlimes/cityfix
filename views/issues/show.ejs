@@ -1,26 +1,9 @@
-<div class="panel panel-default">
-  <div class="panel panel-heading">
-    <h1>Issue: <%= issue.title%></h1>
-  </div>
-  <div class="panel panel-body">
-    <p><i>(created <%= issue.dateCreated %>)</i></p>
-    <h3><i>"<%= issue.problem %>"</i></h3>
-    <% if( issue.isFixed === false) {%>
-      <h4>Status: Pending Action</h4>
-    <% } else { %>
-      <h4>Status: Completed</h4>
-    <% }%>
-    <a class="btn btn-primary" href="/issues">
-      <span class="glyphicon glyphicon-triangle-left"></span> Back</a>
-    <form method="POST" action="/issues/<%= issue.id%>?_method=DELETE">
-      <button class="btn btn-danger" type="submit">
-        <span class="glyphicon glyphicon-trash"></span> Delete
-      </button>
-    </form>
-    <form action="/issues/<%= issue.id%>/edit">
-      <button class="btn btn-warning" type="submit">
-        <span class="glyphicon glyphicon-pencil"></span> Edit
-      </button>
-    </form>
-  </div>
-</div>
+<% if (user.local.isAdmin === false) { %>
+
+  <% include ../partials/userViewIssue %>
+
+<%} else {%>
+
+  <% include ../partials/adminViewIssue %>
+
+<% } %>

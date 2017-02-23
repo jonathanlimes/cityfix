@@ -1,0 +1,35 @@
+<div class="container">
+    <h1><%= issue.title%></h1>
+    <h3>Location: <%= issue.address%></h3>
+    <h3><i>"<%= issue.problem %>"</i></h3>
+
+    <% var spellMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']%>
+    <% var spellDay = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']%>
+
+    You created this issue request at
+    <br> <%=issue.dateCreated.getHours()%>:<%=issue.dateCreated.getMinutes()%> hrs, <%=spellDay[issue.dateCreated.getDay()]%>,  <%=issue.dateCreated.getDate()%>  <%=spellMonth[issue.dateCreated.getMonth()+1]%> <%=issue.dateCreated.getFullYear()%>
+
+    <% if( issue.isFixed === false) {%>
+
+      <h4>Status: Pending Action</h4>
+
+    <% } else { %>
+
+      <h4>Status: Completed</h4>
+
+    <% }%>
+
+    <a class="btn btn-primary" href="/issues">
+      <span class="glyphicon glyphicon-triangle-left"></span> Back</a>
+    <form method="POST" action="/issues/<%= issue.id%>?_method=DELETE">
+      <button class="btn btn-danger" type="submit">
+        <span class="glyphicon glyphicon-trash"></span> Delete
+      </button>
+    </form>
+    <form action="/issues/<%= issue.id%>/edit">
+      <button class="btn btn-warning" type="submit">
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+      </button>
+    </form>
+
+</div>

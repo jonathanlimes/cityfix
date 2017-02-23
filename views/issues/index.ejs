@@ -1,12 +1,12 @@
 <% include ../partials/flash %>
 
-<pre><%=user%></pre>
+<!-- <pre><%=user%></pre> -->
 
 <% if (user.local.isAdmin === false) { %>
 
   <h1>Welcome, <%=user.local.firstName%>!</h1>
 
-  <a href="/issues/new" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Submit new issue request</a>
+  <a href="/issues/new" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> Submit new issue request</a>
 
   <% include ../partials/userPendingRequests %>
   <% include ../partials/userCompletedRequests %>

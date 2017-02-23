@@ -80,6 +80,18 @@ let issueController = {
       isFixed: req.query.isFixed
     }, function (err, output) {
       if (err) return next(err)
+      if (req.query.isFixed === 'true') {
+        req.flash('flash', {
+          type: 'success',
+          message: 'Issue solved! You go-getter!'
+        })
+      }
+      if (req.query.isFixed === 'false') {
+        req.flash('flash', {
+          type: 'danger',
+          message: 'Issue re-opened. Get back on it!'
+        })
+      }
       res.redirect('/issues')
     })
   },

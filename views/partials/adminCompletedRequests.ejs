@@ -1,5 +1,5 @@
 <!-- Admin Completed Requests -->
-<h2><span class="glyphicon glyphicon-ok-circle"></span> All Completed Requests (for Admins)</h2>
+<h2><span class="glyphicon glyphicon-ok-circle"></span> Requests you have completed</h2>
 
 <div class="row">
   <% issues.forEach(function(issue) { %>
@@ -28,6 +28,11 @@
                 href="/issues/<%=issue.id%>/fix?isFixed=false">
                 <span class="glyphicon glyphicon-wrench"></span> Re-open Issue
               </a>
+              <form method="POST" action="/issues/<%= issue.id%>?_method=DELETE">
+                <button class="btn btn-danger" type="submit">
+                   <span class="glyphicon glyphicon-trash"></span> Delete
+                </button>
+              </form>
             <% }%>
 
           </div>

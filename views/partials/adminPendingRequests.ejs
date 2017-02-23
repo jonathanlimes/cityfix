@@ -1,5 +1,5 @@
 <!-- Admin Incomplete Requests -->
-<h2><span class="glyphicon glyphicon-time"></span> All Incomplete Requests (for Admins)</h2>
+<h2><span class="glyphicon glyphicon-time"></span> All requests that need your action</h2>
 
 <div class="row">
   <% issues.forEach(function(issue) { %>
@@ -21,11 +21,6 @@
             <a href="/issues/<%=issue.id%>" class="btn btn-primary">
               <span class="glyphicon glyphicon-eye-open"></span> View
             </a>
-            <form action="/issues/<%= issue.id%>/edit">
-              <button class="btn btn-warning" type="submit">
-                <span class="glyphicon glyphicon-pencil"></span> Edit
-              </button>
-            </form>
 
             <% if( issue.isFixed === false) {%>
               <a
@@ -37,7 +32,6 @@
 
           </div>
         </div>
-        <pre><%=issue%></pre>
       </div>
     <% } %>
   <% }) %>
