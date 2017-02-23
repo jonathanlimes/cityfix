@@ -7,8 +7,8 @@
 
 body {
 	line-height: 1.5;
-	font-family: 'Open Sans', sans-serif;
-    overflow-x: hidden; 
+	font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
 }
 ol, ul {
 	list-style: none;
@@ -37,6 +37,12 @@ h1, h2, h3, h4, h5, h6
 .navbar-default {
     background-color: transparent;
 }
+
+.navbar-inverse {
+		background-color: #111111;
+		padding: 15px 0px;
+}
+
 .main-header
 {
 	background: url(../img/banner.jpeg) no-repeat;
@@ -88,7 +94,6 @@ h1, h2, h3, h4, h5, h6
     background: rgba(0,0,0,0.8);
     padding: 25px 0;
 }
-
 
 .wrapper
 {
@@ -249,7 +254,7 @@ h3.txt-tl {
     display: block;
 }
 .cta-txt h3 {
-    
+
     font-size: 32px;
     margin-bottom: 10px;
     font-weight: 700;

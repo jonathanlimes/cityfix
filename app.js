@@ -61,7 +61,7 @@ app.use(function (req, res, next) {
 // app.use('/', authRouter)
 
 const issueRouter = require('./routes/issue_router')
-app.use('/issues', issueRouter)
+app.use('/', issueRouter)
 
 const userRouter = require('./routes/user_router')
 app.use('/', userRouter)
@@ -69,10 +69,6 @@ app.use('/', userRouter)
 // Render default homepage
 app.get('/', function (req, res) {
   res.render('home')
-})
-
-app.get('/about', function(req, res) {
-  res.render('about')
 })
 
 // Development Error Handler

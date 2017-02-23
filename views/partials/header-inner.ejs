@@ -1,0 +1,35 @@
+<!--nav-->
+<nav class="nav navbar-default navbar-inverse">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar" aria-expanded="false" aria-controls="navbar">
+                <span class="fa fa-bars"></span>
+            </button>
+                <a href="/" class="navbar-brand">CityFix</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-left" id="mynavbar">
+                <ul class="nav navbar-nav">
+                  <li><a href="/issues">View All</a></li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse navbar-right" id="mynavbar">
+                <ul class="nav navbar-nav">
+
+                <% if (isAuthenticated) { %>
+
+                      <li><a href="/users/<%=user.id%>"><span class="glyphicon glyphicon-user"></span> <%= user.local.firstName %> <%= user.local.lastName %></a></li>
+                      <li><a href="/logout">Logout</a></li>
+
+                  <%} else {%>
+
+                      <li><a href="/login">Login</a></li>
+                      <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Register as New User</a></li>
+
+                <% } %>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

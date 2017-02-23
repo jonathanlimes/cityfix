@@ -1,21 +1,25 @@
-<% var spellMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']%>
+<% include ../partials/header-inner %>
 
-<h1><%=user.local.firstName%> <%=user.local.lastName%></h1>
-<h4><span class="glyphicon glyphicon-envelope"></span> <i><%=user.local.email%></i></h4>
-<img src="http://placehold.it/250x250" alt="placeholder-profile-pic">
-<h4>Member since <%=user.local.dateJoined.getDate()%> <%=spellMonth[user.local.dateJoined.getMonth()+1]%> <%=user.local.dateJoined.getFullYear()%></h4>
+<div class="container">
+  <% var spellMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']%>
 
-<% if (user.local.isAdmin === false) { %>
-  <h3>Status: Resident</h3>
-  <h4>Total Issues Opened: <%=user.local.issue_id.length%></h4>
-<%} else {%>
-  <h3>Status: City Admin</h3>
-  <h4>Total Issues On Hand: </h4>
-  <h4>Total Issues Fixed: </h4>
-  <h4>Completion Ratio: </h4>
-<% } %>
+  <h1><%=user.local.firstName%> <%=user.local.lastName%></h1>
+  <h4><span class="glyphicon glyphicon-envelope"></span> <i><%=user.local.email%></i></h4>
+  <img src="http://placehold.it/250x250" alt="placeholder-profile-pic">
+  <h4>Member since <%=user.local.dateJoined.getDate()%> <%=spellMonth[user.local.dateJoined.getMonth()+1]%> <%=user.local.dateJoined.getFullYear()%></h4>
 
-<%# You might want to use db.collection.count() %>
+  <% if (user.local.isAdmin === false) { %>
+    <h3>Status: Resident</h3>
+    <h4>Total Issues Opened: <%=user.local.issue_id.length%></h4>
+  <%} else {%>
+    <h3>Status: City Admin</h3>
+    <h4>Total Issues On Hand: </h4>
+    <h4>Total Issues Fixed: </h4>
+    <h4>Completion Ratio: </h4>
+  <% } %>
 
-<a class="btn btn-primary" href="/issues">
-<span class="glyphicon glyphicon-triangle-left"></span> Back</a>
+  <%# You might want to use db.collection.count() %>
+
+  <a class="btn btn-primary" href="/issues">
+  <span class="glyphicon glyphicon-triangle-left"></span> Back</a>
+</div>

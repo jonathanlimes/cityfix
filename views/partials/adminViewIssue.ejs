@@ -15,19 +15,24 @@
       <h4>Status: Pending Action</h4>
       <a class="btn btn-primary" href="/issues">
         <span class="glyphicon glyphicon-triangle-left"></span> Back</a>
-      <a class="btn btn-success" href="/issues/<%=issue.id%>/fix?isFixed=true">
-        <span class="glyphicon glyphicon-ok-circle"></span> Fix Issue
-      </a>
+
+      <form method="POST" action="/issues/<%=issue.id%>/fix?_method=PUT&isFixed=true">
+          <button class="btn btn-success" type="submit">
+            <span class="glyphicon glyphicon-ok-circle"></span> Fix Issue
+          </button>
+      </form>
 
     <% } else { %>
 
       <h4>Status: Completed</h4>
       <a class="btn btn-primary" href="/issues">
         <span class="glyphicon glyphicon-triangle-left"></span> Back</a>
-      <a class="btn btn-danger"
-        href="/issues/<%=issue.id%>/fix?isFixed=false">
-        <span class="glyphicon glyphicon-wrench"></span> Re-open Issue
-      </a>
+        
+      <form method="POST" action="/issues/<%=issue.id%>/fix?_method=PUT&isFixed=false">
+          <button class="btn btn-danger" type="submit">
+            <span class="glyphicon glyphicon-wrench"></span> Re-open Issue
+          </button>
+      </form>
 
     <% }%>
 

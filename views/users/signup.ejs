@@ -1,5 +1,9 @@
-<% include ../partials/flash %>
+<% include ../partials/header-inner %>
 
-<h1>Register as new user</h1>
+<div class="container">
+  <% include ../partials/flash %>
 
-<%- include('../partials/signupForm', {formUrl: '/signup'}) %>
+  <h1>Register as new user</h1>
+
+  <%- include('../partials/signupForm', {formUrl: '/signup'}) %>
+</div>

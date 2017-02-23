@@ -1,21 +1,25 @@
-<% include ../partials/flash %>
+<% include ../partials/header-inner %>
 
-<!-- <pre><%=user%></pre> -->
+<div class="container">
+  <% include ../partials/flash %>
 
-<% if (user.local.isAdmin === false) { %>
+  <!-- <pre><%=user%></pre> -->
 
-  <h1>Welcome, <%=user.local.firstName%>!</h1>
+  <% if (user.local.isAdmin === false) { %>
 
-  <a href="/issues/new" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> Submit new issue request</a>
+    <h1>Welcome, <%=user.local.firstName%>!</h1>
 
-  <% include ../partials/userPendingRequests %>
-  <% include ../partials/userCompletedRequests %>
+    <a href="/issues/new" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> Submit new issue request</a>
 
-<%} else {%>
+    <% include ../partials/userPendingRequests %>
+    <% include ../partials/userCompletedRequests %>
 
-  <h1>Hi, City Admin <%=user.local.firstName%>! Time to work.</h1>
+  <%} else {%>
 
-  <% include ../partials/adminPendingRequests %>
-  <% include ../partials/adminCompletedRequests %>
+    <h1>Hi, City Admin <%=user.local.firstName%>! Time to work.</h1>
 
-<% } %>
+    <% include ../partials/adminPendingRequests %>
+    <% include ../partials/adminCompletedRequests %>
+
+  <% } %>
+</div>

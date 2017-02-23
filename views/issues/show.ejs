@@ -1,9 +1,15 @@
-<% if (user.local.isAdmin === false) { %>
+<% include ../partials/header-inner %>
 
-  <% include ../partials/userViewIssue %>
+<div class="container">
 
-<%} else {%>
+  <% if (user.local.isAdmin === false) { %>
 
-  <% include ../partials/adminViewIssue %>
+    <% include ../partials/userViewIssue %>
 
-<% } %>
+  <%} else {%>
+
+    <% include ../partials/adminViewIssue %>
+
+  <% } %>
+
+</div>

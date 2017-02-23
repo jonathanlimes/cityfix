@@ -23,11 +23,13 @@
             </a>
 
             <% if( issue.isFixed === false) {%>
-              <a
-                class="btn btn-success"
-                href="/issues/<%=issue.id%>/fix?isFixed=true">
-                <span class="glyphicon glyphicon-ok-circle"></span> Fix Issue
-              </a>
+
+              <form method="POST" action="/issues/<%=issue.id%>/fix?_method=PUT&isFixed=true">
+                <button class="btn btn-success" type="submit">
+                  <span class="glyphicon glyphicon-ok-circle"></span> Fix Issue
+                </button>
+              </form>
+
             <% }%>
 
           </div>
