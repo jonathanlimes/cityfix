@@ -3,6 +3,7 @@ const User = require('../models/user')
 
 let userController = {
   signup: function (req, res) {
+    console.log('routing to signup')
     res.render('users/signup', {
       flash: req.flash('flash')[0]
     })
