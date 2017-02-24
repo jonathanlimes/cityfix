@@ -36,6 +36,7 @@ module.exports = function (passport) {
             lastName: req.body.lastName,
             email: email,
             password: User.encrypt(password),
+            isAdmin: User.isAdmin(req.body.adminId)
           }
         })
 

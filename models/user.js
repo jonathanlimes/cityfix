@@ -48,5 +48,9 @@ userSchema.methods.validPassword = function (givenPassword) {
   return bcrypt.compareSync(givenPassword, this.local.password)
 }
 
+userSchema.statics.isAdmin = function(adminId) {
+  return (adminId === 'Admin123')
+}
+
 const User = mongoose.model('User', userSchema)
 module.exports = User
