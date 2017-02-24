@@ -9,6 +9,13 @@ let userController = {
   },
 
   authSignup: function (req, res, next) {
+    if(!req.body.password || !req.body.firstName || !req.body.lastName || !req.body.email) {
+      req.flash('flash', {
+        type: 'danger',
+        message: 'Please fill in all fields.'
+      })
+      res.redirect('/signup')
+    }
     var signupStrategy = passport.authenticate('local-signup', {
       successRedirect: '/issues',
       failureRedirect: '/signup',
@@ -24,6 +31,13 @@ let userController = {
   },
 
   authLogin: function (req, res, next) {
+  if (!req.body.email || !req.body.password) {
+    req.flash('flash', {
+      type: 'danger',
+      message: 'Please fill in all fields.'
+    })
+    res.redirect('/login')
+  }
     var loginStrategy = passport.authenticate('local-login', {
       successRedirect: '/issues',
       failureRedirect: '/login',

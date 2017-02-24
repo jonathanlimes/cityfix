@@ -29,3 +29,11 @@ form {
 .incomplete {
   color: red;
 }
+
+.single-request {
+  padding: 0px 15px;
+}
+
+.end {
+  padding: 0px 15px 15px 15px;
+}
