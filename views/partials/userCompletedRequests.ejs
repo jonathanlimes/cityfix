@@ -11,7 +11,7 @@
       <% if( issue.isFixed === true) { %>
         <div class="col-md-4">
           <div class="panel panel-success">
-            <div class="panel-heading">
+            <div class="panel-heading panel-custom-completed">
             <h3 class="panel-title sub-heading">
                 <a href="/issues/<%=issue.id%>"><%= issue.title %></a>
                 <br><small>(created <%=issue.dateCreated.getHours()%>:<%=issue.dateCreated.getMinutes()%> hrs, <%=spellDay[issue.dateCreated.getDay()]%>,  <%=issue.dateCreated.getDate()%>  <%=spellMonth[issue.dateCreated.getMonth()+1]%> <%=issue.dateCreated.getFullYear()%>)</small>
@@ -26,11 +26,13 @@
               </iframe>
             <div class="panel-body single-request end">
               <h5>Location: <%= issue.address %></h5>
-              <a href="/issues/<%=issue.id%>" class="btn btn-primary">
+            </div>
+            <div class="panel-body single-request end">
+              <a href="/issues/<%=issue.id%>" class="btn btn-primary col-sm-6">
                 <span class="glyphicon glyphicon-eye-open"></span> View
               </a>
               <form method="POST" action="/issues/<%= issue.id%>?_method=DELETE">
-                <button class="btn btn-danger" type="submit">
+                <button class="btn btn-danger col-sm-6" type="submit">
                    <span class="glyphicon glyphicon-trash"></span> Delete
                 </button>
               </form>

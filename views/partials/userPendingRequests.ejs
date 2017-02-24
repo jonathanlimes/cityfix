@@ -11,7 +11,7 @@
       <% if( issue.isFixed === false) { %>
         <div class="col-md-4">
           <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading panel-custom">
               <h3 class="panel-title sub-heading">
                 <a href="/issues/<%=issue.id%>"><%= issue.title %></a>
                 <br><small>(created <%=issue.dateCreated.getHours()%>:<%=issue.dateCreated.getMinutes()%> hrs, <%=spellDay[issue.dateCreated.getDay()]%>,  <%=issue.dateCreated.getDate()%>  <%=spellMonth[issue.dateCreated.getMonth()+1]%> <%=issue.dateCreated.getFullYear()%>)</small>
@@ -24,18 +24,20 @@
               frameborder="0" style="border:0"
               src="https://www.google.com/maps/embed/v1/place?key=AIzaSyByUpVKGIl-ZT0MxU0yJBBIDdL_SIEVrJg&q=<%=issue.address%>" allowfullscreen>
               </iframe>
-            <div class="panel-body single-request end">
+            <div class="panel-body single-request">
               <h5>Location: <%= issue.address %></h5>
-              <a href="/issues/<%=issue.id%>" class="btn btn-primary">
+            </div>
+            <div class="panel-body single-request end">
+              <a href="/issues/<%=issue.id%>" class="btn btn-primary col-sm-4">
                 <span class="glyphicon glyphicon-eye-open"></span> View
               </a>
               <form method="POST" action="/issues/<%= issue.id%>?_method=DELETE">
-                <button class="btn btn-danger" type="submit">
+                <button class="btn btn-danger col-sm-4" type="submit">
                   <span class="glyphicon glyphicon-trash"></span> Delete
                 </button>
               </form>
               <form action="/issues/<%= issue.id%>/edit">
-                <button class="btn btn-warning" type="submit">
+                <button class="btn btn-warning col-sm-4" type="submit">
                   <span class="glyphicon glyphicon-pencil"></span> Edit
                 </button>
               </form>
