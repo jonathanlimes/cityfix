@@ -9,15 +9,19 @@
       <div class="col-md-4">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title heading">
-              <%= issue.title %>
+            <h3 class="panel-title sub-heading">
+              <a href="/issues/<%=issue.id%>"><%= issue.title %></a>
               <br><small>(created <%=issue.dateCreated.getHours()%>:<%=issue.dateCreated.getMinutes()%> hrs, <%=spellDay[issue.dateCreated.getDay()]%>,  <%=issue.dateCreated.getDate()%>  <%=spellMonth[issue.dateCreated.getMonth()+1]%> <%=issue.dateCreated.getFullYear()%>)</small>
               <br><small>by <%= issue.user_id.local.firstName %> <%= issue.user_id.local.lastName %></small>
             </h3>
           </div>
           <div class="panel-body">
-            <h5>at <%= issue.address %></h5>
-            <h5><i>"<%= issue.problem %>"</i></h5>
+            <h4><i>"<%= issue.problem %>"</i></h4>
+            <iframe class="user-map"
+            frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyByUpVKGIl-ZT0MxU0yJBBIDdL_SIEVrJg&q=<%=issue.address%>" allowfullscreen>
+            </iframe>
+            <h5>Location: <%= issue.address %></h5>
             <a href="/issues/<%=issue.id%>" class="btn btn-primary">
               <span class="glyphicon glyphicon-eye-open"></span> View
             </a>

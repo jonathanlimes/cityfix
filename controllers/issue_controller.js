@@ -28,12 +28,22 @@ let issueController = {
       problem: req.body.issues.problem,
       dateCreated: req.body.issues.dateCreated,
       user_id: req.user._id,
-      isFixed: req.body.issues.isFixed
+      isFixed: req.body.issues.isFixed,
     })
+
+    // var valErr = newIssue.validateSync()
+    // if (valErr) {
+    //   console.log('error')
+    //   req.flash('flash', {
+    //     type: 'danger',
+    //     message: 'Validation Error'
+    //   })
+    //   res.redirect('/issues/new')
+    // }
 
     newIssue.save(function (err, output, next) {
       if (err) {
-        if (err.title === 'ValidationError') {
+        if (err.name === 'ValidationError') {
           let errorMessages = []
           for (field in err.errors) {
             errorMessages.push(err.errors[field].message)

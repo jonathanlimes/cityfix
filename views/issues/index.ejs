@@ -16,6 +16,12 @@
 
     <h1 class="heading">Hi, City Admin <%=user.local.firstName%>! Time to work.</h1>
 
+    <iframe class="admin-map" src="https://www.google.com/maps/d/embed?mid=1jYb4mswYi1NPLrGWl29daHLCva0"></iframe>
+
+    <pre><% issues.forEach(function(issue){ %>
+      <%= issue.address %>
+    <% }) %></pre>
+
     <% include ../partials/adminPendingRequests %>
     <% include ../partials/adminCompletedRequests %>
 

@@ -1,6 +1,10 @@
 <div class="container">
     <h1 class="sub-heading"><%= issue.title%></h1>
     <h4>Location: <%= issue.address%></h4>
+    <iframe class="user-map"
+    frameborder="0" style="border:0"
+    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyByUpVKGIl-ZT0MxU0yJBBIDdL_SIEVrJg&q=<%=issue.address%>" allowfullscreen>
+    </iframe>
     <h2><i>"<%= issue.problem %>"</i></h2>
 
     <% var spellMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']%>
@@ -11,7 +15,7 @@
 
     <% if( issue.isFixed === false) {%>
 
-      <h4>Status: Pending Action</h4>
+      <h4 class="incomplete">Status: Pending Action</h4>
       <a class="btn btn-primary" href="/issues">
         <span class="glyphicon glyphicon-triangle-left"></span> Back</a>
 
@@ -23,7 +27,7 @@
 
     <% } else { %>
 
-      <h4>Status: Completed</h4>
+      <h4 class="success">Status: Completed</h4>
       <a class="btn btn-primary" href="/issues">
         <span class="glyphicon glyphicon-triangle-left"></span> Back</a>
 

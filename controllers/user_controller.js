@@ -3,7 +3,6 @@ const User = require('../models/user')
 
 let userController = {
   signup: function (req, res) {
-    console.log('routing to signup')
     res.render('users/signup', {
       flash: req.flash('flash')[0]
     })
@@ -13,7 +12,7 @@ let userController = {
     var signupStrategy = passport.authenticate('local-signup', {
       successRedirect: '/issues',
       failureRedirect: '/signup',
-      failureFlash: false
+      failureFlash: true
     })
     return signupStrategy(req, res, next)
   },
@@ -28,7 +27,7 @@ let userController = {
     var loginStrategy = passport.authenticate('local-login', {
       successRedirect: '/issues',
       failureRedirect: '/login',
-      failureFlash: false
+      failureFlash: true
     })
     return loginStrategy(req, res, next)
   },
