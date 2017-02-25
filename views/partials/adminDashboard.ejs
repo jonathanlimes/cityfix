@@ -1,0 +1,51 @@
+<div class="row">
+
+    <% var incompleteIssues = 0 %>
+    <% issues.forEach(function (issue) { %>
+      <% if (!issue.isFixed) incompleteIssues++ %>
+    <% }) %>
+
+    <div class="col-md-3">
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <div class="row huge">
+            <i class="fa fa-exclamation-circle" aria-hidden="true"></i> <%=incompleteIssues%> <small> UNFIXED ISSUES </small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <div class="row huge">
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+            <%=issues.length - incompleteIssues%> <small> SOLVED ISSUES </small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <div class="row huge">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <%=issues.length%> <small> TOTAL ISSUES </small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <div class="row huge">
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <%=(incompleteIssues/issues.length * 100).toFixed(2)%>% <small> COMPLETION </small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>

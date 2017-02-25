@@ -29,12 +29,10 @@ const issueSchema = new mongoose.Schema({
 })
 
 // issueSchema.statics.genLat = function (address) {
-//   var lat = 2
 //   var results = geocoder.geocode(address, function (err, output) {
 //     console.log(output.results[0].geometry.location.lat)
-//     lat = output.results[0].geometry.location.lat
+//     return output.results[0].geometry.location.lat
 //   })
-//   console.log(results) // find a synch version of this function
 // }
 //
 // issueSchema.statics.genLng = function (address) {

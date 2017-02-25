@@ -12,10 +12,9 @@
     <h3>Status: Resident</h3>
     <h4>Total Issues Opened: <%=user.local.issue_id.length%></h4>
   <%} else {%>
+
     <h3>Status: City Admin</h3>
-    <h4>Total Issues On Hand: </h4>
-    <h4>Total Issues Fixed: </h4>
-    <h4>Completion Ratio: </h4>
+
   <% } %>
 
   <%# You might want to use db.collection.count() %>

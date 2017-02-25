@@ -28,7 +28,7 @@ let issueController = {
       problem: req.body.issues.problem,
       dateCreated: req.body.issues.dateCreated,
       user_id: req.user._id,
-      isFixed: req.body.issues.isFixed,
+      isFixed: req.body.issues.isFixed
     })
 
     // var valErr = newIssue.validateSync()

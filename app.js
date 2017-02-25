@@ -11,6 +11,7 @@ var app = express()
 var router = express.Router()
 var methodOverride = require('method-override')
 var passport = require('passport')
+var geocoder = require('geocoder')
 
 // to set up session-saving for flash purposes
 var session = require('express-session')
