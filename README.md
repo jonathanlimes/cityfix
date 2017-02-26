@@ -54,5 +54,6 @@ Eventually the website looks like this:
 * [Design Ideas for Bootstrap Panels](https://www.google.com.sg/search?q=bootstrap+panel+designs&biw=960&bih=960&source=lnms&tbm=isch&sa=X&sqi=2&ved=0ahUKEwimiZOMya3SAhUSPrwKHYDoBOoQ_AUIBigB)
 * [Font-Awesome Icon Library](http://fontawesome.io/)
 * [Unsplash Photo Library](https://unsplash.com/)
+* [Google Maps APIs Styling Wizard](https://mapstyle.withgoogle.com/)
 * [Propie, by Chris Ke](https://github.com/chriskejw/propie)
 * Instructors and Classmates at GA Singapore

@@ -42,7 +42,7 @@
         <div class="panel-heading">
           <div class="row huge">
             <i class="fa fa-star-half-o" aria-hidden="true"></i>
-            <%=(incompleteIssues/issues.length * 100).toFixed(2)%>% <small> COMPLETION </small>
+            <%=((issues.length - incompleteIssues)/issues.length * 100).toFixed(2)%>% <small> COMPLETION </small>
           </div>
         </div>
       </div>
