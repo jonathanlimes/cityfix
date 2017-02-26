@@ -1,5 +1,5 @@
-// var dotenv = require('dotenv').config({silent: true})
-// dotenv.load()
+var dotenv = require('dotenv').config({silent: true})
+//dotenv.load()
 var express = require('express')
 var path = require('path')
 var debug = require('debug')
@@ -19,20 +19,20 @@ var flash = require('connect-flash')
 var cookieParser = require('cookie-parser')
 var MongoStore = require('connect-mongo')(session)
 
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect("mongodb://jonathanlimes:project2@ds157509.mlab.com:57509/cityfix")
 mongoose.Promise = global.Promise
 
 app.use(express.static('public'))
 
-app.use(cookieParser(process.env.SESSION_SECRET))
+app.use(cookieParser('sososecret'))
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: 'sososecret',
   cookie: { maxAge: 3600000 },
   resave: false,
   saveUninitialized: true,
   store: new MongoStore({
     // storing in the mongostore - you don't have to keep logging in again when you npm start. it stores session in the mongoDB
-    url: process.env.MONGODB_URI,
+    url: 'mongodb://jonathanlimes:project2@ds157509.mlab.com:57509/cityfix',
     autoReconnect: true,
     mongooseConnection: mongoose.connection
   })
