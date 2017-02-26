@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const geocoder = require('geocoder')
 
 const issueSchema = new mongoose.Schema({
   title: {
