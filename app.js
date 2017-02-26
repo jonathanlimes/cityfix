@@ -19,20 +19,20 @@ var flash = require('connect-flash')
 var cookieParser = require('cookie-parser')
 var MongoStore = require('connect-mongo')(session)
 
-mongoose.connect("mongodb://jonathanlimes:project2@ds157509.mlab.com:57509/cityfix")
+mongoose.connect(process.env.MONGODB_URI)
 mongoose.Promise = global.Promise
 
 app.use(express.static('public'))
 
-app.use(cookieParser('sososecret'))
+app.use(cookieParser(process.env.SESSION_SECRET))
 app.use(session({
-  secret: 'sososecret',
+  secret: process.env.SESSION_SECRET,
   cookie: { maxAge: 3600000 },
   resave: false,
   saveUninitialized: true,
   store: new MongoStore({
     // storing in the mongostore - you don't have to keep logging in again when you npm start. it stores session in the mongoDB
-    url: 'mongodb://jonathanlimes:project2@ds157509.mlab.com:57509/cityfix',
+    url: process.env.MONGODB_URI,
     autoReconnect: true,
     mongooseConnection: mongoose.connection
   })
