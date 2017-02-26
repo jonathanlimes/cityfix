@@ -2,7 +2,10 @@
 
 <script>
 
-var places = ['8 Claymore Hill', 'Mandai Zoo', 'ION Orchard', 'Botanic Gardens', 'Shaw Theatres Lido', '123 Punggol Central', 'Far East Plaza', 'Chinatown Point']
+var places = []
+<% issues.forEach(function (issue) { %>
+  places.push("<%=issue.address%>")
+<% }) %>
 
 function initMap() {
   var geocoder = new google.maps.Geocoder()
